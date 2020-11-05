@@ -7,11 +7,11 @@ class Quotes extends React.Component {
   constructor(props) {
     super(props);
     this.newQuote = this.newQuote.bind(this);
-    this.state = { random: 1 };
+    this.state = { random: 0 };
   }
 
   newQuote() {
-    let rand2 = Math.floor(Math.random() * (50 - 1) + 1);
+    let rand2 = Math.floor(Math.random() * 102);
     this.setState({ random: rand2    })
   }
 
@@ -24,18 +24,15 @@ const allQuotes = quotelist.quotes.map(({ quote, author, id }) => (
   <p id="text" key={id}> {quote} </p>
   <p id="author" key={id}> {author} </p>
   </div>
-  ))
+  ));
 
 return (
     <div>
-          {allQuotes[this.state.random]}
-      <p id="text"></p>
-      <p id="author">aa</p>
-
-      <button onClick={this.newQuote}>New Quote</button>
-      {this.state.random}
-      <a href="#" id="new-quote">Con un evento on click</a> 
-      <a href="#" id="tweet-quote">Tweet</a>
+      {allQuotes[this.state.random]}
+      <button id="new-quote" onClick={this.newQuote}>New Quote</button>
+      <p>Número de Cita: {this.state.random}</p>
+      {/* Acá sería bueno agregar el texto de la cita en el tweet */}
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"  data-text="Esta cita está muy buena" data-url=" " className="twitter-share-button" id="tweet-quote">Tweet</a>
     </div>
 );
 }
